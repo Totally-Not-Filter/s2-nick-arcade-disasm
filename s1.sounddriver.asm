@@ -146,20 +146,25 @@ SoundPriorities:
 ; sub_71B4C:
 UpdateMusic:
 		stopZ80
-		nop
-		nop
-		nop
-		waitZ80
+		nop	
+		nop	
+		nop	
+; loc_71B5A:
+.updateloop:
+		btst	#0,(z80_bus_request).l		; Is the z80 busy?
+		bne.s	.updateloop			; If so, wait
+
 		btst	#7,(z80_ram+zDAC_Status).l	; Is DAC accepting new samples?
 		beq.s	.driverinput			; Branch if yes
 		startZ80
-		nop
-		nop
-		nop
-		nop
-		nop
+		nop	
+		nop	
+		nop	
+		nop	
+		nop	
 		bra.s	UpdateMusic
 ; ===========================================================================
+
 ; loc_71B82:
 .driverinput:
 		lea	(v_snddriver_ram&$FFFFFF).l,a6
@@ -182,7 +187,9 @@ UpdateMusic:
 ; loc_71BB2:
 .skipfadein:
 	if FixBugs
-		tst.l	SMPS_RAM.v_soundqueue0(a6)
+		moveq	#0,d0
+		or.b	SMPS_RAM.v_soundqueue2(a6),d0
+		or.w	SMPS_RAM.v_soundqueue0(a6),d0
 	else
 		; DANGER! The following line only checks v_soundqueue0 and v_soundqueue1, breaking v_soundqueue2.
 		tst.w	SMPS_RAM.v_soundqueue0(a6)	; is a music or sound queued for playing?
@@ -247,7 +254,7 @@ UpdateMusic:
 ; loc_71C22:
 .sfxpsgnext:
 		dbf	d7,.sfxpsgloop
-
+		
 		move.b	#$40,SMPS_RAM.f_voice_selector(a6)	; Now at special SFX tracks
 		adda.w	#SMPS_Track.len,a5
 		tst.b	SMPS_Track.PlaybackControl(a5)		; Is track playing?
@@ -327,11 +334,13 @@ DACUpdateTrack:
 ; Note: this only defines rates for samples $88-$8D, meaning $8E-$8F are invalid.
 ; Also, $8C-$8D are so slow you may want to skip them.
 ; byte_71CC4:
+timpaniLoopCounter function scale,dpcmLoopCounter(int(zDAC_Timpani.sample_rate*scale))
+
 DAC_sample_rate:
-		dc.b dpcmLoopCounter(9750)
-		dc.b dpcmLoopCounter(8750)
-		dc.b dpcmLoopCounter(7150)
-		dc.b dpcmLoopCounter(7000)
+		dc.b timpaniLoopCounter(1.30)
+		dc.b timpaniLoopCounter(1.20)
+		dc.b timpaniLoopCounter(0.97)
+		dc.b timpaniLoopCounter(0.95)
 		dc.b $FF, $FF
 		even
 ; ===========================================================================
@@ -468,9 +477,7 @@ NoteTimeoutUpdate:
 .locret:
 		rts
 ; End of function NoteTimeoutUpdate
-
-
-; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
+; ===========================================================================
 
 ; sub_71DC6:
 DoModulation:
@@ -638,7 +645,7 @@ CycleSoundQueue:
 		move.b	d0,d1
 		clr.b	(a1)+				; Clear entry
 		subi.b	#bgm__First,d0			; Make it into 0-based index
-		blo.s	.nextinput			; If negative (i.e., it was $80 or lower), branch
+		bcs.s	.nextinput			; If negative (i.e., it was $80 or lower), branch
 		cmpi.b	#$80,SMPS_RAM.v_sound_id(a6)	; Is v_sound_id a $80 (silence/empty)?
 		beq.s	.havesound			; If yes, branch
 		move.b	d1,SMPS_RAM.v_soundqueue0(a6)	; Put sound into v_soundqueue0
@@ -732,7 +739,7 @@ PlaySegaSound:
 		move.w	#-1,d0
 ; loc_71FC4:
 .busyloop:
-		nop
+		nop	
 		dbf	d0,.busyloop
 
 		dbf	d1,.busyloop_outer
@@ -925,20 +932,12 @@ Sound_PlayBGM:
 		adda.w	d6,a1
 		dbf	d7,.sfxstoploop
 
-	if FixBugs
-		tst.b	SMPS_RAM.v_spcsfx_fm4_track.PlaybackControl(a6)		; Is special SFX being played?
-	else
 		tst.w	SMPS_RAM.v_spcsfx_fm4_track.PlaybackControl(a6)		; Is special SFX being played?
-	endif
 		bpl.s	.checkspecialpsg					; Branch if not
 		bset	#2,SMPS_RAM.v_music_fm4_track.PlaybackControl(a6)	; Set 'SFX is overriding' bit
 ; loc_7218E:
 .checkspecialpsg:
-	if FixBugs
-		tst.b	SMPS_RAM.v_spcsfx_psg3_track.PlaybackControl(a6)	; Is special SFX being played?
-	else
 		tst.w	SMPS_RAM.v_spcsfx_psg3_track.PlaybackControl(a6)	; Is special SFX being played?
-	endif
 		bpl.s	.sendfmnoteoff						; Branch if not
 		bset	#2,SMPS_RAM.v_music_psg3_track.PlaybackControl(a6)	; Set 'SFX is overriding' bit
 ; loc_7219A:
@@ -1545,7 +1544,7 @@ InitMusicPlayback:
 		jsr	FMSilenceAll(pc)
 		bra.w	PSGSilenceAll
 	endif
-
+	
 ; End of function InitMusicPlayback
 ; ===========================================================================
 
@@ -1661,7 +1660,7 @@ DoFadeIn:
 
 		moveq	#$FFFFFFB6,d0						; prepare FM channel 3/6 L/R/AMS/FMS address
 		move.b	SMPS_RAM.v_music_dac_track.AMSFMSPan(a6),d1		; load DAC channel's L/R/AMS/FMS value
-		bra.w	WriteFMII						; write to FM 6
+		jmp	WriteFMII(pc)						; write to FM 6
 .Resume_NoDAC:
 	endif
 		rts
@@ -1732,9 +1731,9 @@ WriteFMI:
 		btst	#7,d2		; Is FM busy?
 		bne.s	WriteFMI	; Loop if so
 		move.b	d0,(ym2612_a0).l
-		nop
-		nop
-		nop
+		nop	
+		nop	
+		nop	
 ; loc_72746:
 .waitloop:
 		move.b	(ym2612_a0).l,d2
@@ -1759,9 +1758,9 @@ WriteFMII:
 		btst	#7,d2		; Is FM busy?
 		bne.s	WriteFMII	; Loop if so
 		move.b	d0,(ym2612_a1).l
-		nop
-		nop
-		nop
+		nop	
+		nop	
+		nop	
 ; loc_7277C:
 .waitloop:
 		move.b	(ym2612_a0).l,d2
@@ -1866,7 +1865,7 @@ PSGDoNext:
 ; sub_728AC:
 PSGSetFreq:
 		subi.b	#$81,d5				; Convert to 0-based index
-		blo.s	.restpsg			; If $80, put track at rest
+		bcs.s	.restpsg			; If $80, put track at rest
 		add.b	SMPS_Track.Transpose(a5),d5	; Add in channel transposition
 		andi.w	#$7F,d5				; Clear high byte and sign bit
 		lsl.w	#1,d5
@@ -2210,7 +2209,7 @@ cfFadeInToPrevious:
 .nextpsg:
 		adda.w	#SMPS_Track.len,a5
 		dbf	d7,.psgloop
-
+		
 		movea.l	a3,a5
 		move.b	#$80,SMPS_RAM.f_fadein_flag(a6)		; Trigger fade-in
 		move.b	#$28,SMPS_RAM.v_fadein_counter(a6)	; Fade-in delay
@@ -2355,13 +2354,13 @@ SetVoice:
 		move.b	(a2)+,d0
 		move.b	(a1)+,d1
 		lsr.b	#1,d4	; Is bit set for this operator in the mask?
-		bhs.s	.sendtl	; Branch if not
+		bcc.s	.sendtl	; Branch if not
 		add.b	d3,d1	; Include additional attenuation
 ; loc_72C96:
 .sendtl:
 		jsr	WriteFMIorII(pc)
 		dbf	d5,.sendtlloop
-
+		
 		move.b	#$B4,d0				; Register for AMS/FMS/Panning
 		move.b	SMPS_Track.AMSFMSPan(a5),d1	; Value to send
 		jsr	WriteFMIorII(pc)		; (It would be better if this were a jmp)
@@ -2419,9 +2418,9 @@ SendVoiceTL:
 		move.b	(a2)+,d0
 		move.b	(a1)+,d1
 		lsr.b	#1,d4		; Is bit set for this operator in the mask?
-		bhs.s	.senttl		; Branch if not
+		bcc.s	.senttl		; Branch if not
 		add.b	d3,d1		; Include additional attenuation
-		blo.s	.senttl		; Branch on overflow
+		bcs.s	.senttl		; Branch on overflow
 		jsr	WriteFMIorII(pc)
 ; loc_72D12:
 .senttl:
@@ -2851,14 +2850,13 @@ SoundD0:	include "sound/sfx/SndD0 - Waterfall.asm"
 		if ((*)&$7FFF)+Size_of_SegaPCM>$8000
 			align $8000
 		endif
-SegaPCM:	binclude "sound/dac/sega.pcm"
-SegaPCM_End
+SegaPCM:	include "sound/dac/pcm/generated/sega.inc"
 		even
 
-		if SegaPCM_End-SegaPCM>$8000
-			fatal "Sega sound must fit within $8000 bytes, but you have a $\{SegaPCM_End-SegaPCM} byte Sega sound."
+		if SegaPCM.size>$8000
+			fatal "Sega sound must fit within $8000 bytes, but you have a $\{SegaPCM.size} byte Sega sound."
 		endif
-		if SegaPCM_End-SegaPCM>Size_of_SegaPCM
-			fatal "Size_of_SegaPCM = $\{Size_of_SegaPCM}, but you have a $\{SegaPCM_End-SegaPCM} byte Sega sound."
+		if SegaPCM.size>Size_of_SegaPCM
+			fatal "Size_of_SegaPCM = $\{Size_of_SegaPCM}, but you have a $\{SegaPCM.size} byte Sega sound."
 		endif
 
