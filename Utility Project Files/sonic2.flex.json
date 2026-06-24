@@ -1,7 +1,7 @@
 {
     "Flex": 2,
     "name": "Sonic 2 Nick Arcade",
-    "node": "5fb1ac1a-8426-4474-9f3e-823315616291",
+    "node": "802f760a-0554-4f93-82c6-be4e0f7e4544",
     "objects": [
         {
             "name": "Title Screen",
@@ -10,18 +10,18 @@
                     "name": "Sonic and Tails",
                     "palettes": [
                         {
-                            "path": "..\\palette\\Title Screen.bin",
-                            "length": 3
+                            "path": "../palette/Title Screen.bin",
+                            "length": 4
                         }
                     ],
                     "format": "Sonic 2.js",
                     "art": {
-                        "path": "..\\art\\nemesis\\Title Sonic and Tails.nem",
+                        "path": "../art/nemesis/Title Sonic and Tails.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Title Sonic And Tails.asm",
+                        "path": "../mappings/sprite/Title Sonic And Tails.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -43,23 +43,23 @@
                     "name": "Sonic",
                     "palettes": [
                         {
-                            "path": "..\\palette/Sonic and Tails.bin",
+                            "path": "../palette/Sonic and Tails.bin",
                             "length": 1
                         }
                     ],
                     "format": "Sonic 2.js",
                     "art": {
-                        "path": "..\\art\\uncompressed\\Sonic's art.bin",
+                        "path": "../art/uncompressed/Sonic's art.bin",
                         "compression": "Uncompressed",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Sonic.asm",
+                        "path": "../mappings/sprite/Sonic.asm",
                         "label": ""
                     },
                     "dplcs": {
                         "enabled": true,
-                        "path": "..\\mappings\\spriteDPLC\\Sonic.asm",
+                        "path": "../mappings/spriteDPLC/Sonic.asm",
                         "label": ""
                     },
                     "uuid": "5fb1ac1a-8426-4474-9f3e-823315616291"
@@ -68,23 +68,23 @@
                     "name": "Tails",
                     "palettes": [
                         {
-                            "path": "..\\palette/Sonic and Tails.bin",
+                            "path": "../palette/Sonic and Tails.bin",
                             "length": 1
                         }
                     ],
                     "format": "Sonic 2.js",
                     "art": {
-                        "path": "..\\art\\uncompressed\\Tails' art.bin",
+                        "path": "../art/uncompressed/Tails' art.bin",
                         "compression": "Uncompressed",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Tails.asm",
+                        "path": "../mappings/sprite/Tails.asm",
                         "label": ""
                     },
                     "dplcs": {
                         "enabled": true,
-                        "path": "..\\mappings\\spriteDPLC\\Tails.asm",
+                        "path": "../mappings/spriteDPLC/Tails.asm",
                         "label": ""
                     },
                     "uuid": "da472ab9-f363-45e6-8ee3-a83fd70d6d9c"
@@ -94,17 +94,17 @@
                     "name": "Collision Switcher",
                     "palettes": [
                         {
-                            "path": "..\\palette\\EHZ.bin",
+                            "path": "../palette/EHZ.bin",
                             "length": 1
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Ring.nem",
+                        "path": "../art/nemesis/Ring.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Collision Switcher.asm",
+                        "path": "../mappings/sprite/Collision Switcher.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -118,18 +118,18 @@
                     "name": "Spikes",
                     "palettes": [
                         {
-                            "path": "..\\palette\\EHZ.bin",
+                            "path": "../palette/EHZ.bin",
                             "length": 3
                         }
                     ],
                     "format": "Sonic 2.js",
                     "art": {
-                        "path": "..\\art\\nemesis\\Spikes.nem",
+                        "path": "../art/nemesis/Spikes.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Spikes.asm",
+                        "path": "../mappings/sprite/Spikes.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -144,17 +144,17 @@
                     "name": "Signpost",
                     "palettes": [
                         {
-                            "path": "..\\palette\\Sonic and Tails.bin",
+                            "path": "../palette/Sonic and Tails.bin",
                             "length": 1
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Signpost.nem",
+                        "path": "../art/nemesis/Signpost.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Signpost.asm",
+                        "path": "../mappings/sprite/Signpost.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -169,21 +169,21 @@
                     "name": "Monitor",
                     "palettes": [
                         {
-                            "path": "..\\palette\\Sonic and Tails.bin",
+                            "path": "../palette/Sonic and Tails.bin",
                             "length": 1
                         },
                         {
-                            "path": "..\\palette\\EHZ.bin",
+                            "path": "../palette/EHZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Monitor and contents.nem",
+                        "path": "../art/nemesis/Monitor and contents.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Monitor.asm",
+                        "path": "../mappings/sprite/Monitor.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -206,17 +206,17 @@
                     "name": "Snail",
                     "palettes": [
                         {
-                            "path": "..\\palette\\Sonic and Tails.bin",
+                            "path": "../palette/Sonic and Tails.bin",
                             "length": 1
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Snail badnik from EHZ.nem",
+                        "path": "../art/nemesis/Snail badnik from EHZ.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Snail.asm",
+                        "path": "../mappings/sprite/Snail.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -231,17 +231,17 @@
                     "name": "Buzzer",
                     "palettes": [
                         {
-                            "path": "..\\palette\\Sonic and Tails.bin",
+                            "path": "../palette/Sonic and Tails.bin",
                             "length": 1
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Buzzer.nem",
+                        "path": "../art/nemesis/Buzzer.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Buzzer.asm",
+                        "path": "../mappings/sprite/Buzzer.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -256,17 +256,17 @@
                     "name": "Masher",
                     "palettes": [
                         {
-                            "path": "..\\palette\\Sonic and Tails.bin",
+                            "path": "../palette/Sonic and Tails.bin",
                             "length": 1
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Masher.nem",
+                        "path": "../art/nemesis/Masher.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Masher.asm",
+                        "path": "../mappings/sprite/Masher.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -281,17 +281,17 @@
                     "name": "Bridge",
                     "palettes": [
                         {
-                            "path": "..\\palette\\EHZ.bin",
+                            "path": "../palette/EHZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\EHZ bridge.nem",
+                        "path": "../art/nemesis/EHZ bridge.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Bridge (EHZ).asm",
+                        "path": "../mappings/sprite/Bridge (EHZ).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -306,17 +306,17 @@
                     "name": "Waterfall",
                     "palettes": [
                         {
-                            "path": "..\\palette\\EHZ.bin",
+                            "path": "../palette/EHZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Waterfall tiles.nem",
+                        "path": "../art/nemesis/Waterfall tiles.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\EHZ Waterfall.asm",
+                        "path": "../mappings/sprite/EHZ Waterfall.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -339,17 +339,17 @@
                     "name": "Platform",
                     "palettes": [
                         {
-                            "path": "..\\palette\\CPZ.bin",
+                            "path": "../palette/CPZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\CPZ Floating Platform.nem",
+                        "path": "../art/nemesis/CPZ Floating Platform.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\CPZ Platform.asm",
+                        "path": "../mappings/sprite/CPZ Platform.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -372,17 +372,17 @@
                     "name": "Redz",
                     "palettes": [
                         {
-                            "path": "..\\palette\\Sonic and Tails.bin",
+                            "path": "../palette/Sonic and Tails.bin",
                             "length": 1
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Redz.nem",
+                        "path": "../art/nemesis/Redz.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Redz.asm",
+                        "path": "../mappings/sprite/Redz.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -397,17 +397,17 @@
                     "name": "BBat",
                     "palettes": [
                         {
-                            "path": "..\\palette\\Sonic and Tails.bin",
+                            "path": "../palette/Sonic and Tails.bin",
                             "length": 1
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\BBat.nem",
+                        "path": "../art/nemesis/BBat.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\BBat.asm",
+                        "path": "../mappings/sprite/BBat.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -422,17 +422,17 @@
                     "name": "Emerald",
                     "palettes": [
                         {
-                            "path": "..\\palette\\HPZ.bin",
+                            "path": "../palette/HPZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\HPZ Emerald.nem",
+                        "path": "../art/nemesis/HPZ Emerald.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\HPZ Emerald.asm",
+                        "path": "../mappings/sprite/HPZ Emerald.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -447,17 +447,17 @@
                     "name": "Bridge",
                     "palettes": [
                         {
-                            "path": "..\\palette\\HPZ.bin",
+                            "path": "../palette/HPZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\HPZ bridge.nem",
+                        "path": "../art/nemesis/HPZ bridge.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Bridge (HPZ).asm",
+                        "path": "../mappings/sprite/Bridge (HPZ).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -472,17 +472,17 @@
                     "name": "Collapsing Ledge",
                     "palettes": [
                         {
-                            "path": "..\\palette\\HPZ.bin",
+                            "path": "../palette/HPZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\HPZ Platform.nem",
+                        "path": "../art/nemesis/HPZ Platform.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Collapsing Ledge (HPZ).asm",
+                        "path": "../mappings/sprite/Collapsing Ledge (HPZ).asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -497,17 +497,17 @@
                     "name": "Waterfall",
                     "palettes": [
                         {
-                            "path": "..\\palette\\HPZ.bin",
+                            "path": "../palette/HPZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\HPZ waterfall.nem",
+                        "path": "../art/nemesis/HPZ waterfall.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\HPZ Waterfall.asm",
+                        "path": "../mappings/sprite/HPZ Waterfall.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -530,17 +530,17 @@
                     "name": "Zip-line Platform",
                     "palettes": [
                         {
-                            "path": "..\\palette\\HTZ.bin",
+                            "path": "../palette/HTZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\HTZ zip-line platform.nem",
+                        "path": "../art/nemesis/HTZ zip-line platform.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\HTZ Platform.asm",
+                        "path": "../mappings/sprite/HTZ Platform.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -555,17 +555,17 @@
                     "name": "Seesaw",
                     "palettes": [
                         {
-                            "path": "..\\palette\\HTZ.bin",
+                            "path": "../palette/HTZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\See-saw in HTZ.nem",
+                        "path": "../art/nemesis/See-saw in HTZ.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Seesaw.asm",
+                        "path": "../mappings/sprite/Seesaw.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -580,17 +580,17 @@
                     "name": "Seesaw Ball",
                     "palettes": [
                         {
-                            "path": "..\\palette\\HTZ.bin",
+                            "path": "../palette/HTZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\See-saw in HTZ.nem",
+                        "path": "../art/nemesis/See-saw in HTZ.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Seesaw Ball.asm",
+                        "path": "../mappings/sprite/Seesaw Ball.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -613,17 +613,17 @@
                     "name": "Aquis",
                     "palettes": [
                         {
-                            "path": "..\\palette\\HPZ.bin",
+                            "path": "../palette/HPZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Aquis.nem",
+                        "path": "../art/nemesis/Aquis.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Aquis.asm",
+                        "path": "../mappings/sprite/Aquis.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -638,17 +638,17 @@
                     "name": "BFish",
                     "palettes": [
                         {
-                            "path": "..\\palette\\HPZ.bin",
+                            "path": "../palette/HPZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\BFish.nem",
+                        "path": "../art/nemesis/BFish.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Piranha.asm",
+                        "path": "../mappings/sprite/Piranha.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -663,17 +663,17 @@
                     "name": "Gator",
                     "palettes": [
                         {
-                            "path": "..\\palette\\HPZ.bin",
+                            "path": "../palette/HPZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Gator.nem",
+                        "path": "../art/nemesis/Gator.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Gator.asm",
+                        "path": "../mappings/sprite/Gator.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -688,17 +688,17 @@
                     "name": "Octus",
                     "palettes": [
                         {
-                            "path": "..\\palette\\HPZ.bin",
+                            "path": "../palette/HPZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Octus.nem",
+                        "path": "../art/nemesis/Octus.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Octus.asm",
+                        "path": "../mappings/sprite/Octus.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -713,17 +713,17 @@
                     "name": "Stegway",
                     "palettes": [
                         {
-                            "path": "..\\palette\\HPZ.bin",
+                            "path": "../palette/HPZ.bin",
                             "length": 3
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Stegway.nem",
+                        "path": "../art/nemesis/Stegway.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\Stegway.asm",
+                        "path": "../mappings/sprite/Stegway.asm",
                         "label": ""
                     },
                     "dplcs": {
@@ -738,17 +738,17 @@
                     "name": "Object 0F",
                     "palettes": [
                         {
-                            "path": "..\\palette\\Sonic and Tails.bin",
+                            "path": "../palette/Sonic and Tails.bin",
                             "length": 1
                         }
                     ],
                     "art": {
-                        "path": "..\\art\\nemesis\\Monitor and contents.nem",
+                        "path": "../art/nemesis/Monitor and contents.nem",
                         "compression": "Nemesis",
                         "offset": 0
                     },
                     "mappings": {
-                        "path": "..\\mappings\\sprite\\obj0F.asm",
+                        "path": "../mappings/sprite/obj0F.asm",
                         "label": ""
                     },
                     "dplcs": {
