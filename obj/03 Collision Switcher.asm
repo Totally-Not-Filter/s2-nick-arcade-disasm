@@ -30,16 +30,21 @@ Obj03_Init:
 		addq.b	#2,obRoutine(a0)
 		andi.w	#7,d0
 		move.b	d0,obFrame(a0)
-		andi.w	#3,d0
+		andi.w	#(Obj03_Data_End-Obj03_Data)/2-1,d0
 		add.w	d0,d0
 		move.w	Obj03_Data(pc,d0.w),objoff_32(a0)
 		bra.w	loc_13FB6
 ; ---------------------------------------------------------------------------
-Obj03_Data:	dc.w   $20,  $40,  $80,	$100
+Obj03_Data:
+		dc.w $20
+		dc.w $40
+		dc.w $80
+		dc.w $100
+Obj03_Data_End:
 ; ---------------------------------------------------------------------------
 
 loc_13EA4:
-		andi.w	#3,d0
+		andi.w	#(Obj03_Data_End-Obj03_Data)/2-1,d0
 		move.b	d0,obFrame(a0)
 		add.w	d0,d0
 		move.w	Obj03_Data(pc,d0.w),objoff_32(a0)

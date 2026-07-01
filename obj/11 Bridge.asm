@@ -354,7 +354,7 @@ loc_7EC0:
 
 loc_7ECE:
 		movea.l	objoff_30(a0),a1
-		lea	$45(a1),a2
+		lea	sub9_mapframe+next_subspr(a1),a2
 		lea	sub2_mapframe(a1),a1
 		moveq	#0,d1
 		move.b	obSubtype(a0),d1
@@ -441,7 +441,7 @@ loc_7F64:
 		lsl.w	#4,d3
 		lea	(a4,d3.w),a3
 		movea.l	objoff_30(a0),a1
-		lea	$42(a1),a2
+		lea	sub9_y_pos+next_subspr(a1),a2
 		lea	sub2_y_pos(a1),a1
 
 loc_7F7A:
