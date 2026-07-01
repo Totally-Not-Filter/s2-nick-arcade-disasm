@@ -26,9 +26,15 @@ Obj02_Init:
 		move.b	#2,obPriority(a0)
 		move.b	#24,obActWid(a0)
 		move.b	#$84,obRender(a0)
+	if FixBugs
+		move.w	#$600,(Tails_top_speed).w
+		move.w	#$C,(Tails_acceleration).w
+		move.w	#$80,(Tails_deceleration).w
+	else
 		move.w	#$600,(Sonic_top_speed).w
 		move.w	#$C,(Sonic_acceleration).w
 		move.w	#$80,(Sonic_deceleration).w
+	endif
 		move.b	#$C,top_solid_bit(a0)
 		move.b	#$D,lrb_solid_bit(a0)
 		move.b	#0,flips_remaining(a0)
@@ -51,6 +57,9 @@ Obj02_Control:
 Obj02_ControlsLock:
 		bsr.s	Tails_Display
 		bsr.w	RecordTailsMoves
+	if FixBugs
+		bsr.w	Tails_Water
+	endif
 		move.b	(Primary_Angle).w,angleright(a0)
 		move.b	(Secondary_Angle).w,angleleft(a0)
 		bsr.w	Tails_Animate
@@ -124,9 +133,15 @@ Obj02_ChkShoes:
 		beq.s	Obj02_ExitChk
 		subq.w	#1,shoetime(a0)
 		bne.s	Obj02_ExitChk
+	if FixBugs
+		move.w	#$600,(Tails_top_speed).w
+		move.w	#$C,(Tails_acceleration).w
+		move.w	#$80,(Tails_deceleration).w
+	else
 		move.w	#$600,(Sonic_top_speed).w
 		move.w	#$C,(Sonic_acceleration).w
 		move.w	#$80,(Sonic_deceleration).w
+	endif
 ; Obj02_RmvSpeed:
 		move.b	#0,(v_shoes).w
 		move.w	#bgm_Slowdown,d0		; slow down tempo
@@ -239,6 +254,64 @@ RecordTailsMoves:
 		rts
 ; End of function RecordTailsMoves
 
+	if FixBugs
+; ---------------------------------------------------------------------------
+; Subroutine for Sonic when he's underwater
+; ---------------------------------------------------------------------------
+
+; loc_FC06:
+Tails_Water:
+		tst.b	(Water_flag).w
+		bne.s	Obj02_InWater
+
+.locret_FC0A:
+		rts
+; ---------------------------------------------------------------------------
+; loc_FC0E: Obj02_InLevelWithWater:
+Obj02_InWater:
+		move.w	(v_waterpos1).w,d0
+		cmp.w	obY(a0),d0			; is Sonic above water?
+		bge.s	Obj02_OutWater			; if yes, branch
+
+		bset	#6,obStatus(a0)			; set underwater flag
+		bne.s	Tails_Water.locret_FC0A			; if already underwater, branch
+
+		bsr.w	ResumeMusic
+		move.b	#id_Obj0A,(v_tailsbubbles).w		; load Obj0A (sonic's breathing bubbles) at $FFFFB340
+		move.b	#$81,(v_tailsbubbles+obSubtype).w
+		move.w	#$300,(Tails_top_speed).w
+		move.w	#6,(Tails_acceleration).w
+		move.w	#$40,(Tails_deceleration).w
+		asr.w	obVelX(a0)
+		asr.w	obVelY(a0)			; memory oprands can only be shifted one at a time
+		asr.w	obVelY(a0)
+		beq.s	Tails_Water.locret_FC0A
+		move.b	#id_Obj08,(v_splash2P).w		; splash animation
+		move.w	#sfx_Splash,d0			; splash sound
+		jmp	(QueueSound2).l
+; ---------------------------------------------------------------------------
+; Obj02_NotInWater:
+Obj02_OutWater:
+		bclr	#6,obStatus(a0)			; unset underwater flag
+		beq.s	Tails_Water.locret_FC0A			; if already unset, branch
+
+		bsr.w	ResumeMusic
+		move.w	#$600,(Tails_top_speed).w
+		move.w	#$C,(Tails_acceleration).w
+		move.w	#$80,(Tails_deceleration).w
+		asl.w	obVelY(a0)
+		beq.w	Tails_Water.locret_FC0A
+		move.b	#id_Obj08,(v_splash2P).w		; splash animation
+		cmpi.w	#-$1000,obVelY(a0)
+		bgt.s	.loc_FC98
+		move.w	#-$1000,obVelY(a0)		; limit upward y velocity exiting the water
+
+.loc_FC98:
+		move.w	#sfx_Splash,d0			; splash sound
+		jmp	(QueueSound2).l
+; End of function Tails_Water
+	endif
+
 ; ---------------------------------------------------------------------------
 
 Obj02_MdNormal:
@@ -298,9 +371,15 @@ loc_10F0A:
 
 
 Tails_Move:
+	if FixBugs
+		move.w	(Tails_top_speed).w,d6
+		move.w	(Tails_acceleration).w,d5
+		move.w	(Tails_deceleration).w,d4
+	else
 		move.w	(Sonic_top_speed).w,d6
 		move.w	(Sonic_acceleration).w,d5
 		move.w	(Sonic_deceleration).w,d4
+	endif
 		tst.b	(f_slidemode).w
 		bne.w	loc_11026
 		tst.w	locktime(a0)
@@ -591,11 +670,19 @@ locret_11186:
 
 
 Tails_RollSpeed:
+	if FixBugs
+		move.w	(Tails_top_speed).w,d6
+		asl.w	#1,d6
+		move.w	(Tails_acceleration).w,d5
+		asr.w	#1,d5
+		move.w	(Tails_deceleration).w,d4
+	else
 		move.w	(Sonic_top_speed).w,d6
 		asl.w	#1,d6
 		move.w	(Sonic_acceleration).w,d5
 		asr.w	#1,d5
 		move.w	(Sonic_deceleration).w,d4
+	endif
 		asr.w	#2,d4
 		tst.b	(f_slidemode).w
 		bne.w	loc_11204
@@ -714,8 +801,13 @@ loc_1127A:
 
 
 Tails_ChgJumpDir:
+	if FixBugs
+		move.w	(Tails_top_speed).w,d6
+		move.w	(Tails_acceleration).w,d5
+	else
 		move.w	(Sonic_top_speed).w,d6
 		move.w	(Sonic_acceleration).w,d5
+	endif
 		asl.w	#1,d5
 		btst	#4,obStatus(a0)
 		bne.s	loc_112CA
@@ -1642,6 +1734,12 @@ loc_11A2E:
 		bne.w	loc_11AB4
 		moveq	#0,d1
 		move.b	obAngle(a0),d0
+	if FixBugs
+		; Fix off-by-one-radian error (this was implemented in S2/S3K)
+		ble.s	.notoffbyone				; on a flat surface or ascending slope? if yes, branch
+		subq.b	#1,d0					; adjust off-by-one angle on descending slopes
+.notoffbyone:
+	endif
 		move.b	obStatus(a0),d2
 		andi.b	#1,d2
 		bne.s	loc_11A56

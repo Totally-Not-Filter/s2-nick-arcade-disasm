@@ -3071,7 +3071,12 @@ LevelInit_NoWater:
 		bsr.w	PalLoad2
 		tst.b	(Water_flag).w
 		beq.s	Level_GetBgm
+	if FixBugs
+		moveq	#palid_HPZWater,d0
+	else
+		; Bug: The LZ Sonic Water palette from Sonic 1 is loaded in even though HPZ has it's own palette for Sonic.
 		moveq	#palid_LZSonWater,d0
+	endif
 		cmpi.b	#act4,(Current_Act).w
 		bne.s	Level_WaterPal
 		moveq	#palid_SBZ3SonWat,d0

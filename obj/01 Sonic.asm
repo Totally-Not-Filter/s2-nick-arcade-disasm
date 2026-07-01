@@ -180,8 +180,6 @@ Obj01_ExitChk:
 ; and input/status flags for Tails' AI to follow
 ; ---------------------------------------------------------------------------
 
-; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
-
 ; loc_FBB2: CopySonicMovesForTails:
 Sonic_RecordPos:
 		move.w	(Sonic_Pos_Record_Index).w,d0
@@ -200,9 +198,6 @@ Sonic_RecordPos:
 ; ---------------------------------------------------------------------------
 ; Seemingly an earlier subroutine to copy Sonic's status flags for Tails' AI
 ; ---------------------------------------------------------------------------
-
-; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
-
 
 Unused_RecordPos:
 		move.w	(RecordPos_Unused).w,d0
@@ -228,8 +223,6 @@ locret_FC02:
 ; ---------------------------------------------------------------------------
 ; Subroutine for Sonic when he's underwater
 ; ---------------------------------------------------------------------------
-
-; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 ; loc_FC06:
 Sonic_Water:
@@ -361,9 +354,6 @@ loc_FD34:
 ; ---------------------------------------------------------------------------
 ; Subroutine to make Sonic walk/run
 ; ---------------------------------------------------------------------------
-
-; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
-
 
 Sonic_Move:
 		move.w	(Sonic_top_speed).w,d6
@@ -557,9 +547,6 @@ locret_FEF6:
 ; ---------------------------------------------------------------------------
 ; Subroutine to recoil Sonic off a wall if moving a top speed
 ; ---------------------------------------------------------------------------
-
-; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
-
 
 Sonic_WallRecoil:
 		move.b	#4,obRoutine(a0)
@@ -1100,8 +1087,6 @@ locret_10360:
 ; ---------------------------------------------------------------------------
 ; Subroutine to check for starting to charge a spindash
 ; ---------------------------------------------------------------------------
-
-; ||||||||||||||| S U B R O U T I N E |||||||||||||||||||||||||||||||||||||||
 
 ; Sonic_Spindash:
 Sonic_CheckSpindash:
@@ -1728,6 +1713,9 @@ Sonic_Animate:
 		move.b	d0,obPrevAni(a0)
 		move.b	#0,obAniFrame(a0)
 		move.b	#0,obTimeFrame(a0)
+	if FixBugs
+		bclr	#5,obStatus(a0)
+	endif
 
 loc_108EC:
 		add.w	d0,d0
@@ -1801,6 +1789,12 @@ loc_1095C:
 		bne.w	loc_109EA
 		moveq	#0,d1
 		move.b	obAngle(a0),d0
+	if FixBugs
+		; Fix off-by-one-radian error (this was implemented in S2/S3K)
+		ble.s	.notoffbyone				; on a flat surface or ascending slope? if yes, branch
+		subq.b	#1,d0					; adjust off-by-one angle on descending slopes
+.notoffbyone:
+	endif
 		move.b	obStatus(a0),d2
 		andi.b	#1,d2
 		bne.s	loc_10984
@@ -1843,7 +1837,7 @@ loc_109C2:
 
 loc_109D8:
 		lsr.w	#8,d2
-		lsr.w	#1,d2	; divide by 512
+		lsr.w	#1,d2
 		move.b	d2,obTimeFrame(a0)
 		bsr.w	sub_10912
 		add.b	d3,obFrame(a0)

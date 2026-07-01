@@ -22,6 +22,11 @@ Obj08_Init:
 		move.w	#make_art_tile(ArtTile_LZ_Splash,2,0),obGfx(a0)
 		bsr.w	Adjust2PArtPointer
 		move.w	(v_player+obX).w,obX(a0)
+	if FixBugs
+		cmpa.w	#v_splash,a0
+		beq.s	Obj08_Display
+		move.w	(v_player2+obX).w,obX(a0)
+	endif
 
 Obj08_Display:
 		move.w	(v_waterpos1).w,obY(a0)

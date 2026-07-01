@@ -433,124 +433,126 @@ RAM_Start:
 Chunk_Table:		ds.w	64*$100			; 128x128 tile mappings ($8000 bytes)
 Chunk_Table_End:
 
-v_128x128	=	Chunk_Table
-v_128x128_end	=	Chunk_Table_End
+v_128x128:	equ	Chunk_Table
+v_128x128_end:	equ	Chunk_Table_End
 
 Level_Layout:		ds.b	$1000			; level layout buffer ($1000 bytes)
 Level_Layout_End:
 
-v_lvllayout	=	Level_Layout
-v_lvllayout_end	=	Level_Layout_End
-v_lvllayoutbg	=	Level_Layout+$80
+v_lvllayout:	equ	Level_Layout
+v_lvllayout_end:	equ	Level_Layout_End
+v_lvllayoutbg:	equ	Level_Layout+$80
 
 Block_Table:		ds.w	4*$300			; 16x16 tile mappings ($1800 bytes)
 Block_Table_End:
 
-v_16x16	=	Block_Table
-v_16x16_end	=	Block_Table_End
+v_16x16:	equ	Block_Table
+v_16x16_end:	equ	Block_Table_End
 
 TempArray_LayerDef:	ds.b	$200			; background scroll buffer
 Decomp_Buffer:		ds.b	$200			; Nemesis graphics decompression buffer
 Decomp_Buffer_End:
 
-v_bgscroll_buffer	=	TempArray_LayerDef
-v_ngfx_buffer	=	Decomp_Buffer
-v_ngfx_buffer_end	=	Decomp_Buffer_End
+v_bgscroll_buffer:	equ	TempArray_LayerDef
+v_ngfx_buffer:	equ	Decomp_Buffer
+v_ngfx_buffer_end:	equ	Decomp_Buffer_End
 
 Object_Display_Lists:	ds.b	$400			; sprite display queue, in order of priority
 Object_Display_Lists_End:
 
-v_spritequeue	=	Object_Display_Lists
-v_spritequeue_end	=	Object_Display_Lists_End
+v_spritequeue:	equ	Object_Display_Lists
+v_spritequeue_end:	equ	Object_Display_Lists_End
 
 v_objspace:		ds.b	object_size*$80		; object variable space ($40 bytes per object)
 v_objspace_end:
 
 ; 2P mode reserves 6 'blocks' of 12 RAM slots at the end.
-Dynamic_Object_RAM_2P_End = v_objspace_end - ($C * 6) * object_size
+Dynamic_Object_RAM_2P_End: equ v_objspace_end - ($C * 6) * object_size
 
 ; Title screen objects
-v_titlesonic	= v_objspace+object_size*1		; object variable space for Sonic in the title screen ($40 bytes)
-v_titletails	= v_objspace+object_size*2		; object variable space for the "SONIC TEAM PRESENTS" text ($40 bytes)
-v_pressstart	= v_objspace+object_size*2		; object variable space for the "PRESS START BUTTON" text ($40 bytes)
-v_titletm	= v_objspace+object_size*3		; object variable space for the trademark symbol ($40 bytes)
-v_ttlsonichide	= v_objspace+object_size*4		; object variable space for hiding part of Sonic ($40 bytes)
+v_titlesonic:	equ v_objspace+object_size*1		; object variable space for Sonic in the title screen ($40 bytes)
+v_titletails:	equ v_objspace+object_size*2		; object variable space for the "SONIC TEAM PRESENTS" text ($40 bytes)
+v_pressstart:	equ v_objspace+object_size*2		; object variable space for the "PRESS START BUTTON" text ($40 bytes)
+v_titletm:	equ v_objspace+object_size*3		; object variable space for the trademark symbol ($40 bytes)
+v_ttlsonichide:	equ v_objspace+object_size*4		; object variable space for hiding part of Sonic ($40 bytes)
 
 ; Level objects
-v_player	= v_objspace+object_size*0		; object variable space for Sonic ($40 bytes)
-v_player2	= v_objspace+object_size*1		; object variable space for Tails ($40 bytes)
-v_player2tails	= v_objspace+object_size*7		; object variable space for Tails' Tails ($40 bytes)
-v_hud		= v_objspace+object_size*14		; object variable space for the HUD ($40 bytes)
+v_player:	equ v_objspace+object_size*0		; object variable space for Sonic ($40 bytes)
+v_player2:	equ v_objspace+object_size*1		; object variable space for Tails ($40 bytes)
+v_player2tails:	equ v_objspace+object_size*7		; object variable space for Tails' Tails ($40 bytes)
+v_hud:		equ v_objspace+object_size*14		; object variable space for the HUD ($40 bytes)
 
-v_titlecard	= v_objspace+object_size*2		; object variable space for the title card ($100 bytes)
-v_ttlcardname	= v_titlecard+object_size*0		; object variable space for the title card zone name text ($40 bytes)
-v_ttlcardzone	= v_titlecard+object_size*1		; object variable space for the title card "ZONE" text ($40 bytes)
-v_ttlcardact	= v_titlecard+object_size*2		; object variable space for the title card act text ($40 bytes)
-v_ttlcardoval	= v_titlecard+object_size*3		; object variable space for the title card oval ($40 bytes)
+v_titlecard:	equ v_objspace+object_size*2		; object variable space for the title card ($100 bytes)
+v_ttlcardname:	equ v_titlecard+object_size*0		; object variable space for the title card zone name text ($40 bytes)
+v_ttlcardzone:	equ v_titlecard+object_size*1		; object variable space for the title card "ZONE" text ($40 bytes)
+v_ttlcardact:	equ v_titlecard+object_size*2		; object variable space for the title card act text ($40 bytes)
+v_ttlcardoval:	equ v_titlecard+object_size*3		; object variable space for the title card oval ($40 bytes)
 
-v_gameovertext1	= v_objspace+object_size*2		; object variable space for the "GAME"/"TIME" in "GAME OVER"/"TIME OVER" text ($40 bytes)
-v_gameovertext2	= v_objspace+object_size*3		; object variable space for the "OVER" in "GAME OVER"/"TIME OVER" text ($40 bytes)
+v_gameovertext1:	equ v_objspace+object_size*2		; object variable space for the "GAME"/"TIME" in "GAME OVER"/"TIME OVER" text ($40 bytes)
+v_gameovertext2:	equ v_objspace+object_size*3		; object variable space for the "OVER" in "GAME OVER"/"TIME OVER" text ($40 bytes)
 
-v_shieldobj	= v_objspace+object_size*6		; object variable space for the shield ($40 bytes)
-v_starsobj1	= v_objspace+object_size*8		; object variable space for the invincibility stars #1 ($40 bytes)
-v_starsobj2	= v_objspace+object_size*9		; object variable space for the invincibility stars #2 ($40 bytes)
-v_starsobj3	= v_objspace+object_size*10		; object variable space for the invincibility stars #3 ($40 bytes)
-v_starsobj4	= v_objspace+object_size*11		; object variable space for the invincibility stars #4 ($40 bytes)
+v_shieldobj:	equ v_objspace+object_size*6		; object variable space for the shield ($40 bytes)
+v_starsobj1:	equ v_objspace+object_size*8		; object variable space for the invincibility stars #1 ($40 bytes)
+v_starsobj2:	equ v_objspace+object_size*9		; object variable space for the invincibility stars #2 ($40 bytes)
+v_starsobj3:	equ v_objspace+object_size*10		; object variable space for the invincibility stars #3 ($40 bytes)
+v_starsobj4:	equ v_objspace+object_size*11		; object variable space for the invincibility stars #4 ($40 bytes)
 
-v_splash	= v_objspace+object_size*12		; object variable space for the water splash ($40 bytes)
-v_sonicbubbles	= v_objspace+object_size*13		; object variable space for the bubbles that come out of Sonic's mouth/drown countdown ($40 bytes)
-v_watersurface1	= v_objspace+object_size*30		; object variable space for the water surface #1 ($40 bytes)
-v_watersurface2	= v_objspace+object_size*31		; object variable space for the water surface #1 ($40 bytes)
+v_splash:	equ v_objspace+object_size*12		; object variable space for the water splash ($40 bytes)
+v_sonicbubbles:	equ v_objspace+object_size*13		; object variable space for the bubbles that come out of Sonic's mouth/drown countdown ($40 bytes)
+v_splash2P:	equ v_objspace+object_size*15		; object variable space for the water splash ($40 bytes)
+v_tailsbubbles:	equ v_objspace+object_size*16		; object variable space for the bubbles that come out of Tails' mouth/drown countdown ($40 bytes)
+v_watersurface1:	equ v_objspace+object_size*30		; object variable space for the water surface #1 ($40 bytes)
+v_watersurface2:	equ v_objspace+object_size*31		; object variable space for the water surface #1 ($40 bytes)
 
-v_endcard	= v_objspace+object_size*23		; object variable space for the level results card ($1C0 bytes)
-v_endcardsonic	= v_endcard+object_size*0		; object variable space for the level results card "SONIC HAS" text ($40 bytes)
-v_endcardpassed	= v_endcard+object_size*1		; object variable space for the level results card "PASSED" text ($40 bytes)
-v_endcardact	= v_endcard+object_size*2		; object variable space for the level results card act text ($40 bytes)
-v_endcardscore	= v_endcard+object_size*3		; object variable space for the level results card score tally ($40 bytes)
-v_endcardtime	= v_endcard+object_size*4		; object variable space for the level results card time bonus tally ($40 bytes)
-v_endcardring	= v_endcard+object_size*5		; object variable space for the level results card ring bonus tally ($40 bytes)
-v_endcardoval	= v_endcard+object_size*6		; object variable space for the level results card oval ($40 bytes)
+v_endcard:	equ v_objspace+object_size*23		; object variable space for the level results card ($1C0 bytes)
+v_endcardsonic:	equ v_endcard+object_size*0		; object variable space for the level results card "SONIC HAS" text ($40 bytes)
+v_endcardpassed:	equ v_endcard+object_size*1		; object variable space for the level results card "PASSED" text ($40 bytes)
+v_endcardact:	equ v_endcard+object_size*2		; object variable space for the level results card act text ($40 bytes)
+v_endcardscore:	equ v_endcard+object_size*3		; object variable space for the level results card score tally ($40 bytes)
+v_endcardtime:	equ v_endcard+object_size*4		; object variable space for the level results card time bonus tally ($40 bytes)
+v_endcardring:	equ v_endcard+object_size*5		; object variable space for the level results card ring bonus tally ($40 bytes)
+v_endcardoval:	equ v_endcard+object_size*6		; object variable space for the level results card oval ($40 bytes)
 
-v_lvlobjspace	= v_objspace+object_size*32		; level object variable space ($1800 bytes)
-v_lvlobjend	= v_lvlobjspace+object_size*96
-v_objend	= v_lvlobjend
+v_lvlobjspace:	equ v_objspace+object_size*32		; level object variable space ($1800 bytes)
+v_lvlobjend:	equ v_lvlobjspace+object_size*96
+v_objend:	equ v_lvlobjend
 
 ; Special Stage objects
-v_ssrescard	= v_objspace+object_size*23		; object variable space for the Special Stage results card ($140 bytes)
-v_ssrestext	= v_ssrescard+object_size*0		; object variable space for the Special Stage results card text ($40 bytes)
-v_ssresscore	= v_ssrescard+object_size*1		; object variable space for the Special Stage results card score tally ($40 bytes)
-v_ssresring	= v_ssrescard+object_size*2		; object variable space for the Special Stage results card ring bonus tally ($40 bytes)
-v_ssresoval	= v_ssrescard+object_size*3		; object variable space for the Special Stage results card oval ($40 bytes)
-v_ssrescontinue	= v_ssrescard+object_size*4		; object variable space for the Special Stage results card continue icon ($40 bytes)
-v_ssresemeralds	= v_objspace+object_size*32		; object variable space for the emeralds in the Special Stage results ($180 bytes)
+v_ssrescard:	equ v_objspace+object_size*23		; object variable space for the Special Stage results card ($140 bytes)
+v_ssrestext:	equ v_ssrescard+object_size*0		; object variable space for the Special Stage results card text ($40 bytes)
+v_ssresscore:	equ v_ssrescard+object_size*1		; object variable space for the Special Stage results card score tally ($40 bytes)
+v_ssresring:	equ v_ssrescard+object_size*2		; object variable space for the Special Stage results card ring bonus tally ($40 bytes)
+v_ssresoval:	equ v_ssrescard+object_size*3		; object variable space for the Special Stage results card oval ($40 bytes)
+v_ssrescontinue:	equ v_ssrescard+object_size*4		; object variable space for the Special Stage results card continue icon ($40 bytes)
+v_ssresemeralds:	equ v_objspace+object_size*32		; object variable space for the emeralds in the Special Stage results ($180 bytes)
 
 ; Continue screen objects
-v_continuetext	= v_objspace+object_size*1		; object variable space for the continue screen text ($40 bytes)
-v_continuelight	= v_objspace+object_size*2		; object variable space for the continue screen light spot ($40 bytes)
-v_continueicon	= v_objspace+object_size*3		; object variable space for the continue screen icon ($40 bytes)
+v_continuetext:	equ v_objspace+object_size*1		; object variable space for the continue screen text ($40 bytes)
+v_continuelight:	equ v_objspace+object_size*2		; object variable space for the continue screen light spot ($40 bytes)
+v_continueicon:	equ v_objspace+object_size*3		; object variable space for the continue screen icon ($40 bytes)
 
 ; Ending objects
-v_endemeralds	= v_objspace+object_size*16		; object variable space for the emeralds in the ending ($180 bytes)
-v_endemeralds_end	= v_objspace+object_size*32
-v_endlogo	= v_objspace+object_size*16		; object variable space for the logo in the ending ($40 bytes)
+v_endemeralds:	equ v_objspace+object_size*16		; object variable space for the emeralds in the ending ($180 bytes)
+v_endemeralds_end:	equ v_objspace+object_size*32
+v_endlogo:	equ v_objspace+object_size*16		; object variable space for the logo in the ending ($40 bytes)
 
 ; Credits objects
-v_credits	= v_objspace+object_size*2		; object variable space for the credits text ($40 bytes)
-v_endeggman	= v_objspace+object_size*2		; object variable space for Eggman after the credits ($40 bytes)
-v_tryagain	= v_objspace+object_size*3		; object variable space for the "TRY AGAIN" text ($40 bytes)
-v_eggmanchaos	= v_objspace+object_size*32		; object variable space for the emeralds juggled by Eggman ($180 bytes)
+v_credits:	equ v_objspace+object_size*2		; object variable space for the credits text ($40 bytes)
+v_endeggman:	equ v_objspace+object_size*2		; object variable space for Eggman after the credits ($40 bytes)
+v_tryagain:	equ v_objspace+object_size*3		; object variable space for the "TRY AGAIN" text ($40 bytes)
+v_eggmanchaos:	equ v_objspace+object_size*32		; object variable space for the emeralds juggled by Eggman ($180 bytes)
 
 Primary_Collision:	ds.b	$600
 Primary_Collision_End:
 
-v_colladdr1	=		Primary_Collision
-v_colladdr1_end	=	Primary_Collision_End
+v_colladdr1:	equ		Primary_Collision
+v_colladdr1_end:	equ	Primary_Collision_End
 
 Secondary_Collision:	ds.b	$600
 Secondary_Collision_End:
 
-v_colladdr2	=		Secondary_Collision
-v_colladdr2_end	=	Secondary_Collision_End
+v_colladdr2:	equ		Secondary_Collision
+v_colladdr2_end:	equ	Secondary_Collision_End
 
 VDP_Command_Buffer:	ds.w	7*$12			; stores 18 ($12) VDP commands to issue the next time ProcessDMAQueue is called
 VDP_Command_Buffer_Slot:	ds.l	1		; stores the address of the next open slot for a queued VDP command
@@ -585,14 +587,14 @@ Camera_BG3_X_pos:	ds.l	1			; unused (only initialised at beginning of level)?
 Camera_BG3_Y_pos:	ds.l	1			; unused (only initialised at beginning of level)?
 Camera_Positions_End:
 
-v_screenposx	=	Camera_X_pos
-v_screenposy	=	Camera_Y_pos
-v_bgscreenposx	=	Camera_BG_X_pos
-v_bgscreenposy	=	Camera_BG_Y_pos
-v_bg2screenposx	=	Camera_BG2_X_pos
-v_bg2screenposy	=	Camera_BG2_Y_pos
-v_bg3screenposx	=	Camera_BG3_X_pos
-v_bg3screenposy	=	Camera_BG3_Y_pos
+v_screenposx:	equ	Camera_X_pos
+v_screenposy:	equ	Camera_Y_pos
+v_bgscreenposx:	equ	Camera_BG_X_pos
+v_bgscreenposy:	equ	Camera_BG_Y_pos
+v_bg2screenposx:	equ	Camera_BG2_X_pos
+v_bg2screenposy:	equ	Camera_BG2_Y_pos
+v_bg3screenposx:	equ	Camera_BG3_X_pos
+v_bg3screenposy:	equ	Camera_BG3_Y_pos
 
 Camera_Positions_P2:
 Camera_X_pos_P2:	ds.l	1
@@ -687,10 +689,10 @@ Camera_Min_Y_pos:	ds.w	1
 Camera_Max_Y_pos:	ds.w	1
 Camera_Boundaries_End:
 
-v_limitleft2	=		Camera_Min_X_pos
-v_limitright2	=		Camera_Max_X_pos
-v_limittop2	=		Camera_Min_Y_pos
-v_limitbtm2	=		Camera_Max_Y_pos
+v_limitleft2:	equ		Camera_Min_X_pos
+v_limitright2:	equ		Camera_Max_X_pos
+v_limittop2:	equ		Camera_Min_Y_pos
+v_limitbtm2:	equ		Camera_Max_Y_pos
 
 Camera_Delay:
 Horiz_scroll_delay_val:	ds.w	1			; if its value is a, where a != 0, X scrolling will be based on the player's X position a-1 frames ago
@@ -756,7 +758,7 @@ v_bg3scrposy_vdp:	ds.w	1
 v_bg3scrposx_vdp:	ds.w	1
 			ds.b	2			; unused
 v_hbla_hreg:		ds.w	1			; VDP H.interrupt register buffer (8Axx)
-v_hbla_line 		= v_hbla_hreg+1			; screen line where water starts and palette is changed by HBlank
+v_hbla_line:	equ v_hbla_hreg+1			; screen line where water starts and palette is changed by HBlank
 v_pfade_start:		ds.b	1			; palette fading - start position in bytes
 v_pfade_size:		ds.b	1			; palette fading - number of colours
 
@@ -823,7 +825,14 @@ Water_flag:		ds.b	1
 
 Demo_button_index_2P:	ds.w	1			; index into button press demo data, for player 2
 Demo_press_counter_2P:	ds.w	1			; frames remaining until next button press, for player 2
+	if FixBugs
+			ds.b	$16			; unused
+Tails_top_speed:	ds.w	1
+Tails_acceleration:	ds.w	1
+Tails_deceleration:	ds.w	1
+	else
 			ds.b	$1C			; unused
+	endif
 
 Sonic_top_speed:	ds.w	1
 Sonic_acceleration:	ds.w	1
@@ -867,7 +876,7 @@ Demo_press_counter:	ds.b	1			; frames remaining until next button press, for pla
 			ds.b	1			; $FFFFF793 ; seems unused
 PalChangeSpeed:		ds.w	1
 Collision_addr:		ds.l	1
-v_collindex	=	Collision_addr
+v_collindex:	equ	Collision_addr
 v_palss_num:		ds.w	1			; palette cycling in Special Stage - reference number
 v_palss_time:		ds.w	1			; palette cycling in Special Stage - time until next change
 v_palss_index:		ds.w	1			; palette cycling in Special Stage - index into palette cycle 2 (unused?)
@@ -918,7 +927,7 @@ v_levelvariables_end:
 Sprite_Table:		ds.b	$280			; Sprite attribute table buffer
 Sprite_Table_end:
 
-v_palette_water_fading = Sprite_Table_end-palette_size	; duplicate underwater palette, used for transitions ($80 bytes)
+v_palette_water_fading:	equ Sprite_Table_end-palette_size	; duplicate underwater palette, used for transitions ($80 bytes)
 
 v_palette_water:	; main underwater palette
 v_palette_water_line_1:	ds.b $20
@@ -956,7 +965,7 @@ Debug_Speed:		ds.b	1			; (1 byte)
 
 Vint_runcount:		ds.l	1			; (4 bytes)
 
-Current_ZoneAndAct	= Current_Zone
+Current_ZoneAndAct:	equ Current_Zone
 Current_Zone:
 v_zone:			ds.b	1			; (1 byte)
 Current_Act:
@@ -964,7 +973,7 @@ v_act:			ds.b	1			; (1 byte)
 v_lives:		ds.b	1			; (1 byte)
 			ds.b	1			; unused
 v_air:			ds.w	1			; air remaining while underwater
-v_airbyte = v_air+1					; low byte for air
+v_airbyte:	equ v_air+1					; low byte for air
 v_lastspecial:		ds.b	1			; last special stage number
 			ds.b	1			; unused
 v_continues:		ds.b	1			; number of continues
@@ -976,11 +985,11 @@ f_ringcount:		ds.b	1			; ring counter update flag
 f_timecount:		ds.b	1			; time counter update flag
 f_scorecount:		ds.b	1			; score counter update flag
 v_rings:		ds.w	1			; rings
-v_ringbyte = v_rings+1					; low byte for rings
+v_ringbyte:	equ v_rings+1					; low byte for rings
 v_time:			ds.l	1			; time
-v_timemin = v_time+1					; time - minutes
-v_timesec = v_time+2					; time - seconds
-v_timecent = v_time+3					; time - centiseconds
+v_timemin:	equ v_time+1					; time - minutes
+v_timesec:	equ v_time+2					; time - seconds
+v_timecent:	equ v_time+3					; time - centiseconds
 v_score:		ds.l	1			; score
 			ds.b	2			; unused
 v_shield:		ds.b	1			; shield status (00 = no; 01 = yes)
@@ -1046,7 +1055,7 @@ f_creditscheat:		ds.b	1			; hidden credits & press start cheat flag
 v_title_dcount:		ds.w	1			; number of times the d-pad is pressed on title screen
 v_title_ccount:		ds.w	1			; number of times C is pressed on title screen
 Two_player_mode:	ds.w	1
-Two_player_mode_lo	= Two_player_mode+1
+Two_player_mode_lo:	equ Two_player_mode+1
 word_FFEA:		ds.w	1
 v_objstate_debug:	ds.w	1			; a copy of v_objstate, earlier code suggests it was used for debug mode
 Obj_respawn_index_P2_debug:	ds.w	1	; a copy of Obj_respawn_index_P2, earlier code suggests it was used for debug mode
@@ -1066,23 +1075,23 @@ v_ram_end:
 	dephase
 
 ; Special stage
-v_ssangle		= ramaddr($FFFFF780)
-v_ssrotate		= ramaddr($FFFFF782)
-v_ssbuffer1		= v_ram_start
-v_ssblockbuffer		= v_ssbuffer1+$1020		; ($2000 bytes)
-v_ssblockbuffer_end	= v_ssblockbuffer+$80*$40
-v_ssbuffer2		= v_ram_start+$4000
-v_ssblocktypes		= v_ssbuffer2
-v_ssitembuffer		= v_ssbuffer2+$400		; ($100 bytes)
-v_ssitembuffer_end	= v_ssitembuffer+$100
-v_ssbuffer3		= v_ram_start+$8000
-v_ssscroll_buffer	= v_ngfx_buffer+$100
+v_ssangle:		equ ramaddr($FFFFF780)
+v_ssrotate:		equ ramaddr($FFFFF782)
+v_ssbuffer1:		equ v_ram_start
+v_ssblockbuffer:		equ v_ssbuffer1+$1020		; ($2000 bytes)
+v_ssblockbuffer_end:	equ v_ssblockbuffer+$80*$40
+v_ssbuffer2:		equ v_ram_start+$4000
+v_ssblocktypes:		equ v_ssbuffer2
+v_ssitembuffer:		equ v_ssbuffer2+$400		; ($100 bytes)
+v_ssitembuffer_end:	equ v_ssitembuffer+$100
+v_ssbuffer3:		equ v_ram_start+$8000
+v_ssscroll_buffer:	equ v_ngfx_buffer+$100
 
 ; Error handler
 	phase v_objstate
-v_regbuffer:		ds.b	$40			; stores registers d0-a7 during an error event
+v_regbuffer:	ds.b	$40			; stores registers d0-a7 during an error event
 v_spbuffer:		ds.l	1			; stores most recent sp address
-v_errortype:		ds.b	1			; error type
+v_errortype:	ds.b	1			; error type
 	dephase
 	!org 0
 ; ---------------------------------------------------------------------------

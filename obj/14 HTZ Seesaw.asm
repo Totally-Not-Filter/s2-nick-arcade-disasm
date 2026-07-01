@@ -8,7 +8,11 @@ Obj14:
 		move.w	Obj14_Index(pc,d0.w),d1
 		jsr	Obj14_Index(pc,d1.w)
 		out_of_range.w	DeleteObject,objoff_30(a0)
+	if FixBugs
+		jmp	(DisplaySprite).l
+	else
 		bra.w	DisplaySprite
+	endif
 ; ---------------------------------------------------------------------------
 Obj14_Index:	dc.w loc_14CD2-Obj14_Index
 		dc.w loc_14D40-Obj14_Index
