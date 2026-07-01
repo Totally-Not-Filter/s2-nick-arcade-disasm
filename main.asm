@@ -9837,6 +9837,13 @@ ResumeMusic:
 		cmpi.w	#12,(v_air).w
 		bhi.s	loc_12310
 		move.w	#bgm_LZ,d0
+	if FixBugs
+		cmpi.b	#id_HPZ,(Current_Zone).w
+		bne.s	.notHPZ
+		move.w	#bgm_SYZ,d0
+
+.notHPZ:
+	endif
 		cmpi.w	#id_LZ_act4,(Current_ZoneAndAct).w
 		bne.s	loc_122F6
 		move.w	#bgm_SBZ,d0
