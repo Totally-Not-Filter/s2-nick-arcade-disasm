@@ -1,7 +1,6 @@
 {
     "Flex": 2,
     "name": "Sonic 2 Nick Arcade",
-    "node": "3017042a-b51c-402a-a10c-5abce80396ef",
     "objects": [
         {
             "name": "Title Screen",
@@ -29,12 +28,14 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "802f760a-0554-4f93-82c6-be4e0f7e4544"
+                    "config": {
+                        "mapMacros": true
+                    }
                 }
             ],
             "isDirectory": true,
             "expanded": false,
-            "uuid": "f6e9e4b0-3b63-4989-aa56-92532069b3b8"
+            "config": {}
         },
         {
             "name": "Common",
@@ -62,7 +63,9 @@
                         "path": "../mappings/spriteDPLC/Sonic.asm",
                         "label": ""
                     },
-                    "uuid": "5fb1ac1a-8426-4474-9f3e-823315616291"
+                    "config": {
+                        "mapMacros": true
+                    }
                 },
                 {
                     "name": "Tails",
@@ -87,7 +90,7 @@
                         "path": "../mappings/spriteDPLC/Tails.asm",
                         "label": ""
                     },
-                    "uuid": "da472ab9-f363-45e6-8ee3-a83fd70d6d9c"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -112,7 +115,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "c74e1acd-2fc6-4e48-8170-e567ecb2661f"
+                    "config": {}
                 },
                 {
                     "name": "Spikes",
@@ -137,7 +140,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "e1fc295d-c1c7-4e1a-8d2f-c68e484170e5"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -162,7 +165,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "4e1acd2f-c68e-4841-b0e5-67ecb2661fdb"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -191,12 +194,12 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "e61a6398-cc49-46c1-a5d3-0504ee59d287"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
-            "expanded": false,
-            "uuid": "14da472a-b9f3-4355-a6ce-e3a83fd70d6d"
+            "expanded": true,
+            "config": {}
         },
         {
             "name": "Emerald Hill Zone",
@@ -224,7 +227,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "63344e92-2cc4-4e90-8fc9-64802f760a05"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -249,7 +252,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "344e922c-c48e-404f-8964-802f760a0554"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -274,7 +277,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "4e922cc4-8e90-4fc9-a480-2f760a05542f"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -299,7 +302,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "922cc48e-904f-4964-802f-760a05542f93"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -324,12 +327,12 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "89ebf181-3e5a-484f-aa2c-35e0799e85fa"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
             "expanded": false,
-            "uuid": "47a9f390-7a49-4c62-8b74-9227f2274944"
+            "config": {}
         },
         {
             "name": "Chemical Plant Zone",
@@ -357,12 +360,12 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "2cc48e90-4fc9-4480-af76-0a05542f9302"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
             "expanded": false,
-            "uuid": "e9e4b03b-6349-49ea-9692-532069b3b85c"
+            "config": {}
         },
         {
             "name": "Hidden Palace Zone",
@@ -390,7 +393,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "c48e904f-c964-402f-b60a-05542f9302c6"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -415,7 +418,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "8e904fc9-6480-4f76-8a05-542f9302c6be"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -440,7 +443,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "904fc964-802f-460a-8554-2f9302c6be4e"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -465,7 +468,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "4fc96480-2f76-4a05-942f-9302c6be4e0f"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -490,7 +493,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "c964802f-760a-4554-af93-02c6be4e0f7e"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -515,12 +518,12 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "64802f76-0a05-442f-9302-c6be4e0f7e45"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
             "expanded": false,
-            "uuid": "e4b03b63-4989-4a56-9253-2069b3b85cb5"
+            "config": {}
         },
         {
             "name": "Hill Top Zone",
@@ -548,7 +551,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "532069b3-b85c-45ac-b13d-04542976a3fc"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -573,7 +576,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "66e61a63-98cc-4946-8165-d30504ee59d2"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -598,12 +601,12 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "92532069-b3b8-4cb5-acf1-3d04542976a3"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
             "expanded": false,
-            "uuid": "36ac66e6-1a63-48cc-8946-c165d30504ee"
+            "config": {}
         },
         {
             "name": "Unused",
@@ -631,7 +634,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "3b634989-ea56-4253-a069-b3b85cb5acf1"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -656,7 +659,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "634989ea-5692-4320-a9b3-b85cb5acf13d"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -681,7 +684,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "4989ea56-9253-4069-b3b8-5cb5acf13d04"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -706,7 +709,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "b03b6349-89ea-4692-9320-69b3b85cb5ac"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -731,7 +734,7 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "ea569253-2069-43b8-9cb5-acf13d045429"
+                    "config": {}
                 },
                 {
                     "format": "Sonic 2.js",
@@ -756,12 +759,12 @@
                         "path": "",
                         "label": ""
                     },
-                    "uuid": "3017042a-b51c-402a-a10c-5abce80396ef"
+                    "config": {}
                 }
             ],
             "isDirectory": true,
             "expanded": false,
-            "uuid": "ac66e61a-6398-4c49-86c1-65d30504ee59"
+            "config": {}
         }
     ]
 }

@@ -1855,7 +1855,7 @@ loc_109EA:
 		or.b	d2,obRender(a0)
 		addi.b	#$B,d0
 		divu.w	#$16,d0
-		addi.b	#$9B,d0
+		addi.b	#SonFr_Spiral1,d0
 		move.b	d0,obFrame(a0)
 		move.b	#0,obTimeFrame(a0)
 		rts
@@ -1868,7 +1868,7 @@ loc_10A1E:
 		neg.b	d0
 		addi.b	#$8F,d0
 		divu.w	#$16,d0
-		addi.b	#$9B,d0
+		addi.b	#SonFr_Spiral1,d0
 		move.b	d0,obFrame(a0)
 		move.b	#0,obTimeFrame(a0)
 		rts
@@ -1958,39 +1958,104 @@ SonicAniData:	dc.w SonicAni_Walk-SonicAniData
 		dc.w SonicAni_Blank-SonicAniData
 		dc.w SonicAni_Float3-SonicAniData
 		dc.w SonicAni_S1Float4-SonicAniData
-SonicAni_Walk:	dc.b $FF,$10,$11,$12,$13,$14,$15,$16,$17, $C, $D, $E, $F,$FF
-SonicAni_Run:	dc.b $FF,$3C,$3D,$3E,$3F,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
-SonicAni_Roll:	dc.b $FE,$6C,$70,$6D,$70,$6E,$70,$6F,$70,$FF
-SonicAni_Roll2:	dc.b $FE,$6C,$70,$6D,$70,$6E,$70,$6F,$70,$FF
-SonicAni_Push:	dc.b $FD,$77,$78,$79,$7A,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
-SonicAni_Wait:	dc.b   7,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1
-		dc.b   1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  2
-		dc.b   3,  3,  3,  4,  4,  5,  5,$FE,  4
-SonicAni_Balance:	dc.b	7,$89,$8A,$FF
-SonicAni_LookUp:	dc.b   5,  6,  7,$FE,  1
-SonicAni_Duck:	dc.b   5,$7F,$80,$FE,  1
-SonicAni_Spindash:	dc.b	 0,$71,$72,$71,$73,$71,$74,$71,$75,$71,$76,$71,$FF
-SonicAni_WallRecoil1:	dc.b $3F,$82,$FF
-SonicAni_WallRecoil2:	dc.b   7, 8, 8, 9,$FD,	5
-SonicAni_WailRecoil3:	dc.b   7,  9,$FD,  5
-SonicAni_Stop:	dc.b   3,$81,$82,$83,$84,$85,$86,$87,$88,$FE,  2
-SonicAni_Float1:	dc.b   7,$94,$96,$FF
-SonicAni_Float2:	dc.b   7,$91,$92,$93,$94,$95,$FF
-SonicAni_Spring:	dc.b $2F,$7E,$FD,  0
-SonicAni_Hang:	dc.b	 5,$8F,$90,$FF
-SonicAni_S1Leap1:	dc.b	$F,$43,$43,$43,$FE,  1
-SonicAni_S1Leap2:	dc.b	$F,$43,$44,$FE,	 1
-SonicAni_S1Surf:	dc.b $3F,$49,$FF
-SonicAni_Bubble:	dc.b  $B,$97,$97,$12,$13,$FD,  0
-SonicAni_Burnt:	dc.b $20,$9A,$FF
-SonicAni_Drown:	dc.b $20,$99,$FF
-SonicAni_Death:	dc.b $20,$98,$FF
-SonicAni_S1Shrink:	dc.b	 3,$4E,$4F,$50,$51,$52,	 0,$FE,	 1
-SonicAni_Hurt:	dc.b $40,$8D,$FF
-SonicAni_WaterSlide:	dc.b	  9,$8D,$8E,$FF
-SonicAni_Blank:	dc.b $77,  0,$FD,  0
-SonicAni_Float3:	dc.b   3,$91,$92,$93,$94,$95,$FF
-SonicAni_S1Float4:	dc.b   3,$3C,$FD,  0
+SonicAni_Walk:
+		dc.b -1
+		dc.b SonFr_Walk5,SonFr_Walk6,SonFr_Walk7,SonFr_Walk8,SonFr_Walk9,SonFr_Walk10,SonFr_Walk11,SonFr_Walk12,SonFr_Walk1,SonFr_Walk2,SonFr_Walk3,SonFr_Walk4,$FF
+SonicAni_Run:
+		dc.b -1
+		dc.b SonFr_Run1,SonFr_Run2,SonFr_Run3,SonFr_Run4,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
+SonicAni_Roll:
+		dc.b -2
+		dc.b SonFr_Roll1,SonFr_Roll5,SonFr_Roll2,SonFr_Roll5,SonFr_Roll3,SonFr_Roll5,SonFr_Roll4,SonFr_Roll5,$FF
+SonicAni_Roll2:
+		dc.b -2
+		dc.b SonFr_Roll1,SonFr_Roll5,SonFr_Roll2,SonFr_Roll5,SonFr_Roll3,SonFr_Roll5,SonFr_Roll4,SonFr_Roll5,$FF
+SonicAni_Push:
+		dc.b -3
+		dc.b SonFr_Push1,SonFr_Push2,SonFr_Push3,SonFr_Push4,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
+SonicAni_Wait:
+		dc.b 7
+	rept 30
+		dc.b SonFr_Stand
+	endr
+		dc.b SonFr_Wait1
+		dc.b SonFr_Wait2,SonFr_Wait2,SonFr_Wait2
+		dc.b SonFr_Wait3,SonFr_Wait3,SonFr_Wait4,SonFr_Wait4,$FE,4
+SonicAni_Balance:
+		dc.b 7
+		dc.b SonFr_Balance1,SonFr_Balance2,$FF
+SonicAni_LookUp:
+		dc.b 5
+		dc.b SonFr_LookUp1,SonFr_LookUp2,$FE,1
+SonicAni_Duck:
+		dc.b 5
+		dc.b SonFr_Duck1,SonFr_Duck2,$FE,1
+SonicAni_Spindash:
+		dc.b 0
+		dc.b SonFr_Spindash1,SonFr_Spindash2,SonFr_Spindash1,SonFr_Spindash3,SonFr_Spindash1,SonFr_Spindash4,SonFr_Spindash1,SonFr_Spindash5,SonFr_Spindash1,SonFr_Spindash6,SonFr_Spindash1,$FF
+SonicAni_WallRecoil1:
+		dc.b 63
+		dc.b SonFr_Skid2,$FF
+SonicAni_WallRecoil2:
+		dc.b 7
+		dc.b SonFr_WallRecoil1,SonFr_WallRecoil1,SonFr_WallRecoil2,$FD,5
+SonicAni_WailRecoil3:
+		dc.b 7
+		dc.b SonFr_WallRecoil2,$FD,5
+SonicAni_Stop:
+		dc.b 3
+		dc.b SonFr_Skid1,SonFr_Skid2,SonFr_Skid3,SonFr_Skid4,SonFr_Skid5,SonFr_Skid6,SonFr_Skid7,SonFr_Skid8,$FE,2
+SonicAni_Float1:
+		dc.b 7
+		dc.b SonFr_Float4,SonFr_Float6,$FF
+SonicAni_Float2:
+		dc.b 7
+		dc.b SonFr_Float1,SonFr_Float2,SonFr_Float3,SonFr_Float4,SonFr_Float5,$FF
+SonicAni_Spring:
+		dc.b 47
+		dc.b SonFr_Spring,$FD,0
+SonicAni_Hang:
+		dc.b 5
+		dc.b SonFr_Hang1,SonFr_Hang2,$FF
+SonicAni_S1Leap1:
+		dc.b 15
+		dc.b $43,$43,$43,$FE,1
+SonicAni_S1Leap2:
+		dc.b 15
+		dc.b $43,$44,$FE,1
+SonicAni_S1Surf:
+		dc.b 63
+		dc.b $49,$FF
+SonicAni_Bubble:
+		dc.b 11
+		dc.b SonFr_GetAir,SonFr_GetAir,SonFr_Walk7,SonFr_Walk8,$FD,0
+SonicAni_Burnt:
+		dc.b 32
+		dc.b SonFr_Burnt,$FF
+SonicAni_Drown:
+		dc.b 32
+		dc.b SonFr_Drown,$FF
+SonicAni_Death:
+		dc.b 32
+		dc.b SonFr_Death,$FF
+SonicAni_S1Shrink:
+		dc.b 3
+		dc.b $4E,$4F,$50,$51,$52,0,$FE,1
+SonicAni_Hurt:
+		dc.b 64
+		dc.b SonFr_Hurt,$FF
+SonicAni_WaterSlide:
+		dc.b 9
+		dc.b SonFr_Hurt,SonFr_WaterSlide,$FF
+SonicAni_Blank:
+		dc.b 119
+		dc.b SonFr_Null,$FD,0
+SonicAni_Float3:
+		dc.b 3
+		dc.b SonFr_Float1,SonFr_Float2,SonFr_Float3,SonFr_Float4,SonFr_Float5,$FF
+SonicAni_S1Float4:
+		dc.b 3
+		dc.b $3C,$FD,0
 		even
 
 ; ---------------------------------------------------------------------------
